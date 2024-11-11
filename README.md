@@ -15,57 +15,37 @@
 #include <stdio.h>
 #include <string.h>
 
-void simpleAESEncrypt(char *plaintext, char *key, char *ciphertext)
-{
-    int i;
-    for (i = 0; i < strlen(plaintext); i++) 
-    {
-        ciphertext[i] = plaintext[i] ^ key[i % strlen(key)]; 
+// XOR encryption function
+void xor_encrypt_decrypt(char *input, char *key) {
+    int input_len = strlen(input);
+    int key_len = strlen(key);
+
+    for (int i = 0; i < input_len; i++) {
+        input[i] = input[i] ^ key[i % key_len]; // XOR encryption
     }
-    ciphertext[i] = '\0'; 
 }
 
-void simpleAESDecrypt(char *ciphertext, char *key, char *decryptedText)
-{
-    int i;
-    for (i = 0; i < strlen(ciphertext); i++) 
-    {
-        decryptedText[i] = ciphertext[i] ^ key[i % strlen(key)]; 
-    }
-    decryptedText[i] = '\0'; 
-}
+int main() {
+    char url[] = "https://www.google.com/";
+    char key[] = "secretkey"; // Simple key for XOR encryption
 
-void printASCII(char *ciphertext) 
-{
-    printf("Encrypted Message (ASCII values): ");
-    for (int i = 0; i < strlen(ciphertext); i++) 
-    {
-        printf("%d ", (unsigned char)ciphertext[i]); 
-    }
-    printf("\n");
-}
+    printf("Original URL: %s\n", url);
 
-int main() 
-{
-    char plaintext[100], key[100], ciphertext[100], decryptedText[100];
+    // Encrypt the URL
+    xor_encrypt_decrypt(url, key);
+    printf("Encrypted URL: %s\n", url);
 
-    printf("Enter the plaintext: ");
-    scanf("%s", plaintext);
-
-    printf("Enter the key: ");
-    scanf("%s", key);
-
-    simpleAESEncrypt(plaintext, key, ciphertext);
-    printASCII(ciphertext);  
-
-    simpleAESDecrypt(ciphertext, key, decryptedText);
-    printf("Decrypted Message: %s\n", decryptedText);
+    // Decrypt the URL (since XOR is reversible using the same key)
+    xor_encrypt_decrypt(url, key);
+    printf("Decrypted URL: %s\n", url);
 
     return 0;
 }
+ 
 ```
 ## OUTPUT:
-![Screenshot 2024-10-23 160858](https://github.com/user-attachments/assets/17aeeca3-1401-4c23-b16a-c25439c270a5)
+![Screenshot 2024-11-11 140714](https://github.com/user-attachments/assets/701aa93f-efce-4cab-b20b-9543a7948646)
+
 
 
 ## RESULT: 

@@ -1,6 +1,5 @@
 
-# EX-4-ADVANCED-ENCRYPTION-STANDARD-DES-ALGORITHM
-
+# Ex. No : 4 ADVANCED ENCRYPTION STANDARD (DES) ALGORITHM  ( URL ENCRYPTION )
 ## Aim:
   To use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption.
 
